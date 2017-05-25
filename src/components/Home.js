@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ga from 'react-ga'
 import epi from '../services/epi'
+import '../styles/Home.css';
 
 class Home extends React.Component {
   constructor(props) {
