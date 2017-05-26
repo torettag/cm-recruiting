@@ -1,0 +1,36 @@
+#sidemenu {
+  background: #363636;
+}
+
+.flex-row {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+   flex-direction: row;
+}
+
+.flex-col {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+   flex-direction: column;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 12em;
+} 
+
+li a {
+    display: block;
+    padding: 1.2em;
+    padding-left: 4em;
+    color: white;
+    text-decoration: none;
+    font-size: .75em;
+    text-align:left;
+    /*background-color: #dddddd;*/
+}
+

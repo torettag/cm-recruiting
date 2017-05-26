@@ -1,5 +1,9 @@
-#home {
-  background: red;
+#welcomestatus {
+  background: orange;
+  width: 100%;
+  height: 2em;
+  font-size: 1.4em;
+  padding: .5em 0em 0em 1em;
 }
 
 .flex-row {
@@ -16,13 +20,5 @@
    flex-direction: column;
 }
 
-.flex-child {
-  background:blue;
-  height: 50px;
-  width: 50px;
-}
 
-#content {
-  background: green;
-  width: 100%;
-}
+

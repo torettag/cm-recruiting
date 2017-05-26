@@ -3,11 +3,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ga from 'react-ga'
 import epi from '../services/epi'
-import '../styles/Home.css';
-import Sidemenu from '../components/Sidemenu';
-import Welcomestatus from '../components/Welcomestatus';
+import '../styles/Sidemenu.css';
 
-class Home extends React.Component {
+
+class Sidemenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -20,17 +19,14 @@ class Home extends React.Component {
 
   render () {
     return (
-      <div id='home' className='view-container'>
+      <div id='sidemenu' className='view-container'>
         <section className=''>
-
-          <div className='flex-row'>
-            <Sidemenu/>
-            <div id='content' className='flex-row'> 
-            <Welcomestatus/>
-
-
-            </div>
-
+          <div className='flex-col'>
+            <ul>
+              <li><a href="#home">DASHBOARD</a></li>
+              <li><a href="#news">ADD RECRUITS</a></li>
+              <li><a href="#contact">VIEW JOB LIST</a></li>
+            </ul>
           </div>
         </section>
 
@@ -41,9 +37,15 @@ class Home extends React.Component {
 
 function mapStateToProps(state){
   return {
+
   }
 }
 
+export default connect(mapStateToProps)(Sidemenu)
 
 
-export default connect(mapStateToProps)(Home)
+
+
+
+
+
