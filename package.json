@@ -2,6 +2,7 @@
   "name": "cm-recruiting",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/cm-recruiting/",
   "dependencies": {
     "classnames": "2.2.5",
     "history": "4.6.1",
