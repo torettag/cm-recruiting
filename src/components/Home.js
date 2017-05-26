@@ -6,6 +6,7 @@ import epi from '../services/epi'
 import '../styles/Home.css';
 import Sidemenu from '../components/Sidemenu';
 import Welcomestatus from '../components/Welcomestatus';
+import Tasks from '../components/Tasks';
 
 class Home extends React.Component {
   constructor(props) {
@@ -25,13 +26,16 @@ class Home extends React.Component {
 
           <div className='flex-row'>
             <Sidemenu/>
-            <div id='content' className='flex-row'> 
-            <Welcomestatus/>
-
-
+            <div className='flex-col'>
+              <Welcomestatus/>
+              <div className='flex-row'>
+                <Tasks/>
+              </div>
             </div>
-
           </div>
+
+
+
         </section>
 
       </div>

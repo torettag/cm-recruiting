@@ -1,5 +1,10 @@
-#home {
-  background: red;
+#tasks {
+  background: blue ;
+  min-width: 50%;
+}
+
+h1 {
+  
 }
 
 .flex-row {
@@ -16,13 +21,4 @@
    flex-direction: column;
 }
 
-.flex-child {
-  background:blue;
-  height: 300px;
-  width: 300px;
-}
 
-#content {
-  background: green;
-  width: 100%;
-}
