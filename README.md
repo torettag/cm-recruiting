@@ -1,4 +1,4 @@
-CM-Recruiting App.
+CM-Recruiting App
 
 
 TODO: Will erase this when done:
