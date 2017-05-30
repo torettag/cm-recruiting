@@ -1,10 +1,6 @@
-#tasks {
-  background: blue ;
-  min-width: 300px;
-}
-
-h1 {
-
+#referraltrack {
+  background: purple;
+  width: 100%;
 }
 
 .flex-row {
@@ -12,6 +8,7 @@ h1 {
   display: flex;
   -webkit-flex-direction: row;
    flex-direction: row;
+  width: 100%;
 }
 
 .flex-col {
@@ -19,6 +16,7 @@ h1 {
   display: flex;
   -webkit-flex-direction: column;
    flex-direction: column;
+   width: 100%;
 }
 
 

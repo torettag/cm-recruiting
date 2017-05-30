@@ -6,7 +6,10 @@ import epi from '../services/epi'
 import '../styles/Home.css';
 import Sidemenu from '../components/Sidemenu';
 import Welcomestatus from '../components/Welcomestatus';
+import Referraltrack from '../components/Referraltrack';
+import Rewardtrack from '../components/Rewardtrack';
 import Tasks from '../components/Tasks';
+import Activitymon from '../components/Activitymon';
 
 class Home extends React.Component {
   constructor(props) {
@@ -21,7 +24,7 @@ class Home extends React.Component {
 
   render () {
     return (
-      <div id='home' className='view-container'>
+      <div id='home'>
         <section className=''>
 
           <div className='flex-row'>
@@ -30,6 +33,16 @@ class Home extends React.Component {
               <Welcomestatus/>
               <div className='flex-row'>
                 <Tasks/>
+                <div className='flex-col'>
+                  <div className='flex-row'>
+                    <Referraltrack/>
+                    <Rewardtrack/>
+                  </div>
+
+                  <div className='flex-row'>
+                    <Activitymon/>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

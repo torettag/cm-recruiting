@@ -3,10 +3,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ga from 'react-ga'
 import epi from '../services/epi'
-import '../styles/Tasks.css';
+import '../styles/Activitymon.css';
 
 
-class Tasks extends React.Component {
+class Activitymon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -19,11 +19,10 @@ class Tasks extends React.Component {
 
   render () {
     return (
-      <div className='view-container'>
-        <section id="tasks" className=''>
+      <div id='activitymon' className='view-container'>
+        <section className=''>
           <div className='flex-col'>
-            <h1>Task List</h1>
-            <h1>Task List</h1>
+            <p>ACTIVITY MONITOR</p>
           </div>
         </section>
 
@@ -38,4 +37,11 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps)(Tasks)
+export default connect(mapStateToProps)(Activitymon)
+
+
+
+
+
+
+
