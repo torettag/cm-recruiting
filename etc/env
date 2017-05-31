@@ -1,1 +1,1 @@
-export REACT_APP_EPIQUERY_CM=http://localhost:7070
+export REACT_APP_EPIQUERY_CM=https://epi.glgresearch.com/epistream-cm/epiquery1/glglive/
