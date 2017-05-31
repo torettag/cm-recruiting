@@ -22,6 +22,9 @@ class Sidemenu extends React.Component {
       <div id='sidemenu' className='view-container'>
         <section className=''>
           <div className='flex-col'>
+            <span className="icon-dash_icon"></span>
+            <span className="icon-addcontact_icon"><span className="path1"></span><span className="path2"></span><span className="path3"></span></span>
+            <span className="icon-joblist_icon"></span>
             <ul>
               <li><a href="#home">DASHBOARD</a></li>
               <li><a href="#news">ADD RECRUITS</a></li>
