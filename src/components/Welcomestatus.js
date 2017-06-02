@@ -21,7 +21,7 @@ class Welcomestatus extends React.Component {
       <div id='welcomestatus'className='view-container'>
         <section className=''>
           <div className='flex-row'>
-            Welcome, <span className='your-name'>{this.props.councilMemberStore.first_name} {this.props.councilMemberStore.last_name}</span>
+            Welcome, <span className='your-name'>{this.props.councilMemberStore.councilMember.first_name} {this.props.councilMemberStore.councilMember.last_name}</span>
           </div>
         </section>
 
@@ -32,7 +32,7 @@ class Welcomestatus extends React.Component {
 
 function mapStateToProps(store){
   return {
-    councilMemberStore: store.reducers.councilMember.council_member
+    councilMemberStore: store.reducers.councilMember
   }
 }
 

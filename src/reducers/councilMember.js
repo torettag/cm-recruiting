@@ -4,7 +4,7 @@ function council_member(state = {}, action) {
   switch (action.type) {
     case 'setCouncilMember':
       return objectAssign({}, state, {
-        council_member: action.value
+        councilMember: action.value
       })
     default:
       return state

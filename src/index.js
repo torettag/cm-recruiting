@@ -60,7 +60,7 @@ if (params.jwtcookie)
 
 //Go get who is logged in and all shared info
 Promise.all(
-  [new epi().get('cm/getCouncilMember.mustache'), new epi().get('referrals/getReferral.mustache') ]
+  [new epi().get('cm/getCouncilMember.mustache'), new epi().get('referral/getReferral.mustache') ]
 )
 .then( (results) => {
   let cm = results[0][0];
