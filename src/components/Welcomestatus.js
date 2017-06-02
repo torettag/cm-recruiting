@@ -22,7 +22,7 @@ class Welcomestatus extends React.Component {
       <div id='welcomestatus'className='view-container'>
         <section className=''>
           <div className='flex-row'>
-            Welcome, Joseph
+            Welcome, <span className='your-name'>Joseph Tresca</span>
           </div>
         </section>
 

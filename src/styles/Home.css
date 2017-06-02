@@ -1,5 +1,5 @@
 #home {
-  background: red;
+
 }
 
 .flex-row {
@@ -17,7 +17,6 @@
 }
 
 .flex-child {
-  background:blue;
   height: 300px;
   width: 300px;
 }

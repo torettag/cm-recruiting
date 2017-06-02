@@ -1,5 +1,4 @@
 #welcomestatus {
-  background: orange;
   width: 100%;
   height: 2em;
   font-size: 1.4em;
@@ -18,6 +17,12 @@
   display: flex;
   -webkit-flex-direction: column;
    flex-direction: column;
+}
+
+.your-name {
+  color: gray;
+  font-weight: 500;
+  padding-left: .25em;
 }
 
 
