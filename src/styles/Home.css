@@ -1,5 +1,5 @@
 #home {
-
+  
 }
 
 .flex-row {
@@ -24,4 +24,9 @@
 #content {
   background: green;
   width: 100%;
+}
+
+#h1 {
+  padding-left: 0px;
+  margin-left: 0px;
 }
