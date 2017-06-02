@@ -1,7 +1,6 @@
 import React from 'react'
 // import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import ga from 'react-ga'
 import epi from '../services/epi'
 import '../styles/Welcomestatus.css';
 
@@ -14,7 +13,7 @@ class Welcomestatus extends React.Component {
   }
 
   componentDidMount () {
-    ga.pageview('/home');
+
   }
 
   render () {
@@ -22,7 +21,7 @@ class Welcomestatus extends React.Component {
       <div id='welcomestatus'className='view-container'>
         <section className=''>
           <div className='flex-row'>
-            Welcome, <span className='your-name'>Joseph Tresca</span>
+            Welcome, <span className='your-name'>{this.props.councilMemberStore.first_name} {this.props.councilMemberStore.last_name}</span>
           </div>
         </section>
 
@@ -31,9 +30,9 @@ class Welcomestatus extends React.Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(store){
   return {
-
+    councilMemberStore: store.reducers.councilMember.council_member
   }
 }
 

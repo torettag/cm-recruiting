@@ -1,7 +1,6 @@
 import React from 'react'
 // import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import ga from 'react-ga'
 import epi from '../services/epi'
 import '../styles/Tasks.css';
 
@@ -14,7 +13,11 @@ class Tasks extends React.Component {
   }
 
   componentDidMount () {
-    ga.pageview('/home');
+    this.epi.get('referral/getReferral.mustache')
+    .then( (referrals) => {
+      console.log(referrals);
+    })
+
   }
 
   render () {

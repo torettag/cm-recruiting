@@ -22,11 +22,13 @@ import epi from './services/epi';
 import Home from './components/Home';
 
 import councilMemberReducer from './reducers/councilMember';
+import referralsReducer from './reducers/referrals';
 
 
 //setup reducers
 const reducers = combineReducers({
-  councilMember: councilMemberReducer
+  councilMember: councilMemberReducer,
+  referrals: referralsReducer
 });
 
 // Create a history
@@ -56,26 +58,35 @@ if (process.env.REACT_APP_GA)
 if (params.jwtcookie)
   cookie.save('jwt', params.jwtcookie, {expires: moment().add(30,'d').toDate()});
 
-//Go get who is logged in
-new epi().get('cm/getCouncilMember.mustache')
-.then( (cmResult) => {
-  let cm = cmResult;
+//Go get who is logged in and all shared info
+Promise.all(
+  [new epi().get('cm/getCouncilMember.mustache'), new epi().get('referrals/getReferral.mustache') ]
+)
+.then( (results) => {
+  let cm = results[0][0];
+  let referrals = results[1];
   if (cm) {
-    cm = cm[0];
     store.dispatch({type:"setCouncilMember",value: cm});
+
+    store.dispatch({type:"setReferrals",value: referrals});
+
+    //once info received, render the app
+    ReactDOM.render(
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+         <App>
+            <Route path="/" component={Home}/>
+          </App>
+        </ConnectedRouter>
+      </Provider>,
+      document.getElementById('root')
+    )
   }
+  else
+    console.log('User not found');
 });
 
 
-ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-     <App>
-        <Route path="/" component={Home}/>
-      </App>
-    </ConnectedRouter>
-  </Provider>,
-  document.getElementById('root')
-)
+
 
 registerServiceWorker();
