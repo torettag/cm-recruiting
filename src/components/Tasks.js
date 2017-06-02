@@ -15,7 +15,6 @@ class Tasks extends React.Component {
   componentDidMount () {
     let referrals = this.props.referralsStore.referrals;
 
-
     //find the task to perform
     referrals.forEach( (referral) => { 
       //has not completed the application
@@ -48,6 +47,14 @@ class Tasks extends React.Component {
             <h1>Tasks</h1>
             
             { this.state.referrals.map( (referral) => {
+                let reasonMailToMap = { 
+                  'apply': { Subject: 'Following up on your application to GLG', Body: 'Please click on the following link to apply to GLG' },
+                  'terms': { Subject: 'Following up on your application to GLG', Body: 'Please click on the following link to sign your GLG terms' }, 
+                  'rate': { Subject: 'Following up on your application to GLG', Body: 'Please click on the following link to set your GLG rate' },
+                  'accept': { Subject: 'Following up on your application to GLG', Body: 'Please click on the following link to accept your GLG project' } 
+                }
+                let mailToLink = `mailto:${referral.referredCouncilMemberEmail}?Subject=${reasonMailToMap[referral.task.reason].Subject}&body=${reasonMailToMap[referral.task.reason].Body}`
+
                 return(
                   <div className='task-child' key={referral.referredCouncilMemberCouncilMemberId}>
 
@@ -70,8 +77,9 @@ class Tasks extends React.Component {
                         <div className='action-name-container'>
                           {referral.task.sponsorTask}
                         </div>
+
                         <div className='action-button'>
-                          <span className="icon-redarrow_icon"></span>
+                          <a href={ mailToLink }><span className="icon-redarrow_icon"></span></a>
                         </div>
                       </div>
                     </div>
