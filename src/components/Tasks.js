@@ -1,6 +1,6 @@
 import React from 'react'
-// import { Link } from 'react-router'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import epi from '../services/epi'
 import '../styles/Tasks.css';
 
@@ -19,20 +19,28 @@ class Tasks extends React.Component {
     referrals.forEach( (referral) => { 
       //has not completed the application
       if (referral.referredCouncilMemberIsLead)
-        referral.task = { reason: 'apply', referralTask: 'Has not completed the application', sponsorTask: 'Follow up'  };
+        referral.task = { priority: 1, reason: 'apply', referralTask: 'Has not completed the application', sponsorTask: 'Follow up'  };
       //has not signed the terms
       else if (!referral.referredCouncilMemberSignedTerms)
-        referral.task = { reason: 'terms', referralTask: 'Has not signed the terms and conditions', sponsorTask: 'Help them sign the T&Cs'};
+        referral.task = { priority: 2, reason: 'terms', referralTask: 'Has not signed the terms and conditions', sponsorTask: 'Help them sign the T&Cs'};
       //has not set a rate
       else if (!referral.referredCouncilMemberSetRate )
-        referral.task = { reason: 'rate', referralTask: 'Has not set a rate', sponsorTask: 'Help them set a rate'};
+        referral.task = { priority: 4, reason: 'rate', referralTask: 'Has not set a rate', sponsorTask: 'Help them set a rate'};
       //has not accepted project
       else if (referral.referredCouncilMemberInvitedConsultationId)
-        referral.task = { reason: 'accept', referralTask: 'Has not accepted a project', sponsorTask: 'Help them to accept'};
+        referral.task = { priority: 3, reason: 'accept', referralTask: 'Has not accepted a project', sponsorTask: 'Help them to accept'};
     })
 
     //filter only to referrals that need tasks completed
     referrals = referrals.filter( (referral) => { return referral.task })
+
+    //sort priority and by newest referral
+    referrals = referrals.sort( (a, b) => {  
+      if (a.task.priority !== b.task.priority)
+        return a.task.priority - b.task.priority;
+      else
+        return moment(a.referredCouncilMemberCreateDat) + moment(b.referredCouncilMemberCreateDate);
+    })
 
 
     this.setState({ referrals });

@@ -1,6 +1,6 @@
 import React from 'react'
-// import { Link } from 'react-router'
 import { connect } from 'react-redux'
+import moment from 'moment';
 import epi from '../services/epi'
 import '../styles/Referraltrack.css';
 
@@ -13,6 +13,11 @@ class Referraltrack extends React.Component {
   }
 
   componentDidMount () {
+    let referrals = this.props.referralsStore.referrals;
+
+    let referralsInLast30Days = referrals.filter( (referral) => { return moment().subtract(30,'days') < moment(referral.referredCouncilMemberCreateDate) } )
+
+    this.setState({ referralsInLast30Days })
 
   }
 
@@ -22,6 +27,9 @@ class Referraltrack extends React.Component {
         <section className=''>
           <div className='flex-col'>
             <p>REFERRAL TRACKING</p>
+            { this.state.referralsInLast30Days ?
+              <p>{this.state.referralsInLast30Days.length}</p>
+            : null }
           </div>
         </section>
 
@@ -30,9 +38,9 @@ class Referraltrack extends React.Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(store){
   return {
-
+    referralsStore: store.reducers.referrals
   }
 }
 
