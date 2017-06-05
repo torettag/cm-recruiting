@@ -13,6 +13,7 @@ class Referraltrack extends React.Component {
   }
 
   componentDidMount () {
+    //how many referrals in the last 30 days
     let referrals = this.props.referralsStore.referrals;
 
     let referralsInLast30Days = referrals.filter( (referral) => { return moment().subtract(30,'days') < moment(referral.referredCouncilMemberCreateDate) } )
