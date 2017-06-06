@@ -21,7 +21,10 @@ class Rewardtrack extends React.Component {
       <div id='rewardtrack' className='view-container'>
         <section className=''>
           <div className='flex-col'>
-            <p>REWARD TRACKING</p>
+            <div className='subhead'>Last Reward</div><br/>
+            <div id='textblock' className='flex-row'>
+              <div className='large-red-text'>$5000</div>
+            </div>
           </div>
         </section>
 

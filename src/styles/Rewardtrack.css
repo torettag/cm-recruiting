@@ -1,6 +1,10 @@
 #rewardtrack {
-  background: green;
+  background: #ebebeb;
   width: 100% !important;
+  margin-right: 1.3em;
+  border-width:1px 1px 1px 1px;
+  border-style:solid solid solid solid;
+  border-color:#a0a0a0 #a0a0a0 #a0a0a0 #a0a0a0;
 }
 
 .flex-row {

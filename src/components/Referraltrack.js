@@ -21,7 +21,11 @@ class Referraltrack extends React.Component {
       <div id='referraltrack' className='view-container'>
         <section className=''>
           <div className='flex-col'>
-            <p>REFERRAL TRACKING</p>
+            <div className='subhead'>Referral Invites</div><br/>
+            <div id='textblock' className='flex-row'>
+              <div className='large-red-text'>50</div>
+              <span className='large-desc-text'>in past<br/>30 days</span>
+            </div>
           </div>
         </section>
 
