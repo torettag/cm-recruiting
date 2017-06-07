@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import mustache from 'mustache'
 import moment from 'moment'
 import epi from '../services/epi'
 import '../styles/Tasks.css';
@@ -48,6 +49,8 @@ class Tasks extends React.Component {
   }
 
   render () {
+    let cm = this.props.councilMemberStore.councilMember;
+
     return (
       <div className='view-container'>
         <section id='tasks' className=''>
@@ -55,13 +58,14 @@ class Tasks extends React.Component {
             <h1>Tasks</h1>
             
             { this.state.referrals.map( (referral) => {
-                let reasonMailToMap = { 
-                  'apply': { Subject: 'Following up on your application to GLG', Body: 'Please click on the following link to apply to GLG' },
-                  'terms': { Subject: 'Following up on your application to GLG', Body: 'Please click on the following link to sign your GLG terms' }, 
-                  'rate': { Subject: 'Following up on your application to GLG', Body: 'Please click on the following link to set your GLG rate' },
-                  'accept': { Subject: 'Following up on your application to GLG', Body: 'Please click on the following link to accept your GLG project' } 
+                let reasonMailToMap = {
+                  'apply': { subject: 'Following up on your application to GLG', bodyTemplate: 'Please click on the following link to apply to GLG%0a%0https://services.glgresearch.com/cm-profile/?referredByPersonId={{cm.Person_Id}}&campaign=cm-recruiting' },
+                  'terms': { subject: 'Sign the GLG Terms and Conditions', bodyTemplate: 'Please click on the following link to sign your GLG terms%0a%0' }, 
+                  'rate': { subject: 'Set your GLG rate', bodyTemplate: 'Please click on the following link to set your GLG rate%0a%0ahttps://services.glgresearch.com/rate-recommender' },
+                  'accept': { subject: 'Following up on your application to GLG', bodyTemplate: 'Please click on the following link to accept your GLG project%0a%0https://services.glgresearch.com/cm_accept/nextProject?cpid={{referral.referredCouncilMemberInvitedConsultationParticipantId}}' } 
                 }
-                let mailToLink = `mailto:${referral.referredCouncilMemberEmail}?Subject=${reasonMailToMap[referral.task.reason].Subject}&body=${reasonMailToMap[referral.task.reason].Body}`
+                let body = mustache.render(reasonMailToMap[referral.task.reason].bodyTemplate, { referral, cm })
+                let mailToLink = `mailto:${referral.referredCouncilMemberEmail}?Subject=${reasonMailToMap[referral.task.reason].subject}&body=${body}`
 
                 return(
                   <div className='task-child' key={referral.referredCouncilMemberCouncilMemberId}>
@@ -106,6 +110,7 @@ class Tasks extends React.Component {
 
 function mapStateToProps(store){
   return {
+    councilMemberStore: store.reducers.councilMember,
     referralsStore: store.reducers.referrals
   }
 }
