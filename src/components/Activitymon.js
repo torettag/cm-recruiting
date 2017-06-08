@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import epi from '../services/epi'
 import '../styles/Activitymon.css';
@@ -13,7 +12,8 @@ class Activitymon extends React.Component {
   }
 
   componentDidMount () {
-
+    let referrals = this.props.referralsStore.referrals;
+    console.log("Referrals OBJECT: " ,referrals);
   }
 
   render () {
@@ -45,9 +45,9 @@ class Activitymon extends React.Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(store){
   return {
-
+    referralsStore: store.reducers.referrals
   }
 }
 
