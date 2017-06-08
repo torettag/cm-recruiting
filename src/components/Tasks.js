@@ -59,10 +59,10 @@ class Tasks extends React.Component {
             
             { this.state.referrals.map( (referral) => {
                 let reasonMailToMap = {
-                  'apply': { subject: 'Following up on your application to GLG', bodyTemplate: 'Please click on the following link to apply to GLG%0a%0https://services.glgresearch.com/cm-profile/?referredByPersonId={{cm.Person_Id}}&campaign=cm-recruiting' },
-                  'terms': { subject: 'Sign the GLG Terms and Conditions', bodyTemplate: 'Please click on the following link to sign your GLG terms%0a%0https://services.glgresearch.com/redirect-next' }, 
+                  'apply': { subject: 'Following up on your application to GLG', bodyTemplate: 'Please click on the following link to apply to GLG%0a%0ahttps://services.glgresearch.com/cm-profile/?referredByPersonId={{cm.Person_Id}}%26campaign=cm-recruiting' },
+                  'terms': { subject: 'Sign the GLG Terms and Conditions', bodyTemplate: 'Please click on the following link to sign your GLG terms%0a%0ahttps://services.glgresearch.com/redirect-next' }, 
                   'rate': { subject: 'Set your GLG rate', bodyTemplate: 'Please click on the following link to set your GLG rate%0a%0ahttps://services.glgresearch.com/rate-recommender' },
-                  'accept': { subject: 'Following up on your application to GLG', bodyTemplate: 'Please click on the following link to accept your GLG project%0a%0https://services.glgresearch.com/cm_accept/nextProject?cpid={{referral.referredCouncilMemberInvitedConsultationParticipantId}}' } 
+                  'accept': { subject: 'Following up on your application to GLG', bodyTemplate: 'Please click on the following link to accept your GLG project%0a%0ahttps://services.glgresearch.com/cm_accept/nextProject?cpid={{referral.referredCouncilMemberInvitedConsultationParticipantId}}' } 
                 }
                 let body = mustache.render(reasonMailToMap[referral.task.reason].bodyTemplate, { referral, cm })
                 let mailToLink = `mailto:${referral.referredCouncilMemberEmail}?Subject=${reasonMailToMap[referral.task.reason].subject}&body=${body}`
