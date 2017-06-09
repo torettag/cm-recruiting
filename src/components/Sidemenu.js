@@ -13,11 +13,13 @@ class Sidemenu extends React.Component {
   }
 
   componentDidMount () {
-
+    let cm = this.props.councilMemberStore.councilMember;
+     console.log("CM DATA BELONGS HERE: ",cm)
   }
 
   render () {
     return (
+
       <div id='sidemenu' className='view-container'>
         <section className=''>
           <div className='flex-col'>
@@ -37,9 +39,9 @@ class Sidemenu extends React.Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(store){
   return {
-
+    councilMemberStore: store.reducers.councilMember
   }
 }
 
