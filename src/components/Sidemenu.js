@@ -14,13 +14,16 @@ class Sidemenu extends React.Component {
 
   componentDidMount () {
     let cm = this.props.councilMemberStore.councilMember;
+    this.setState({ isNode: this.props.councilMemberStore.councilMember.todo_ind });
+
      console.log("CM DATA BELONGS HERE: ",cm)
   }
 
   render () {
     return (
-
+      
       <div id='sidemenu' className='view-container'>
+      { this.state.isNode ?
         <section className=''>
           <div className='flex-col'>
             <span className="icon-dash_icon"></span>
@@ -33,8 +36,9 @@ class Sidemenu extends React.Component {
             </ul>
           </div>
         </section>
-
+        : null }
       </div>
+      
     )
   }
 }
