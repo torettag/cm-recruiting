@@ -11,10 +11,14 @@ class Tasks extends React.Component {
     super(props);
     this.state = { referrals: []};
     this.epi = new epi();
+    this.pageLoad = this.pageLoad.bind(this);
   }
 
-  componentDidMount () {
+  pageLoad () {
     let referrals = this.props.referralsStore.referrals;
+
+    //filter to referrals you did not skip
+    referrals = referrals.filter( (referral) => { return !referral.isCouncilMemberReferralFollowUpSkip })
 
     //find the task to perform
     referrals.forEach( (referral) => { 
@@ -45,7 +49,25 @@ class Tasks extends React.Component {
 
 
     this.setState({ referrals });
+  }
 
+  componentDidMount () {
+    this.pageLoad();
+  }
+
+  followUpSkip (referredCouncilMemberId) {
+    let props = this.props;
+    this.epi.post('referral/insertCouncilMemberReferralFollowUpSkip.mustache')
+    .then( () => {
+      //find the referral
+      let referral = props.referralsStore.referrals.find( (referral) => { return referral.referredCouncilMemberCouncilMemberId === referredCouncilMemberId })
+      //mark skipped
+      referral.isCouncilMemberReferralFollowUpSkip = true;
+      //send it up to reducer
+      props.dispatch({type:"setReferrals",value: props.referralsStore.referrals});
+
+      this.pageLoad();
+    })
   }
 
   render () {
@@ -78,7 +100,7 @@ class Tasks extends React.Component {
                             {referral.task.referralTask}
                           </p>
                         </div>
-                        <div className='task-child-close'>
+                        <div className='task-child-close' onClick={(e) => this.followUpSkip(referral.referredCouncilMemberCouncilMemberId)}>
                           <span className="icon-close_icon"></span>
                         </div>
                       </div>
@@ -115,4 +137,12 @@ function mapStateToProps(store){
   }
 }
 
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     referralDispatch: () => dispatch(updateImageAction()),
+//   };
+// };
+
 export default connect(mapStateToProps)(Tasks)
+
+

@@ -32,7 +32,7 @@ class Home extends React.Component {
             <div className='flex-col'>
               <Welcomestatus/>
               <div className='flex-row'>
-                <Tasks/>
+                <Tasks />
                 <div className='flex-col'>
 
                   <h1 id="h1">Key Information</h1>
