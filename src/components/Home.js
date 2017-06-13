@@ -40,10 +40,6 @@ class Home extends React.Component {
                     <Referraltrack/>
                     <Rewardtrack/>
                   </div>
-
-                  <div className='flex-row'>
-                    <Activitymon/>
-                  </div>
                 </div>
               </div>
             </div>

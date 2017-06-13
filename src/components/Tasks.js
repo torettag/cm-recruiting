@@ -44,7 +44,7 @@ class Tasks extends React.Component {
       if (a.task.priority !== b.task.priority)
         return a.task.priority - b.task.priority;
       else
-        return moment(a.referredCouncilMemberCreateDat) + moment(b.referredCouncilMemberCreateDate);
+        return moment(a.referredCouncilMemberCreateDate) + moment(b.referredCouncilMemberCreateDate);
     })
 
 
