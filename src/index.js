@@ -52,7 +52,7 @@ const store = createStore(
 let params = qs.parse(window.location.search);
 
 if (process.env.REACT_APP_GA)
-   ga.initialize('',{ debug: true });
+   ga.initialize('UA-100969534-1',{ debug: true });
 
 //for local dev
 if (params.jwtcookie)
