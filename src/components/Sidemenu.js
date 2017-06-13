@@ -12,18 +12,34 @@ class Sidemenu extends React.Component {
     this.epi = new epi();
   }
 
+
+  componentWillMount() {
+    this.setState({ isFocusMode: this.checkFocusMode() });
+  }
+
   componentDidMount () {
     let cm = this.props.councilMemberStore.councilMember;
-    this.setState({ isNode: this.props.councilMemberStore.councilMember.todo_ind });
-
      console.log("CM DATA BELONGS HERE: ",cm)
+  }
+
+
+
+  checkFocusMode () {
+    let urlParams = new URLSearchParams(window.location.search);
+    console.log("HAS FOCUS MODE?: ",urlParams.get('focusMode'));
+    if (urlParams.get('focusMode') === "true") {
+      return true
+    }
+    else {
+      return false
+    }
   }
 
   render () {
     return (
       
       <div id='sidemenu' className='view-container'>
-      { this.state.isNode ?
+      { !this.state.isFocusMode ?
         <section className=''>
           <div className='flex-col'>
             <span className="icon-dash_icon"></span>
