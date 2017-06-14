@@ -14,32 +14,18 @@ class Sidemenu extends React.Component {
 
 
   componentWillMount() {
-    this.setState({ isFocusMode: this.checkFocusMode() });
+
   }
 
   componentDidMount () {
-    let cm = this.props.councilMemberStore.councilMember;
-     console.log("CM DATA BELONGS HERE: ",cm)
-  }
 
-
-
-  checkFocusMode () {
-    let urlParams = new URLSearchParams(window.location.search);
-    console.log("HAS FOCUS MODE?: ",urlParams.get('focusMode'));
-    if (urlParams.get('focusMode') === "true") {
-      return true
-    }
-    else {
-      return false
-    }
   }
 
   render () {
     return (
       
       <div id='sidemenu' className='view-container'>
-      { !this.state.isFocusMode ?
+      { !this.props.appSettingsStore.focusMode ?
         <section className=''>
           <div className='flex-col'>
             <span className="icon-dash_icon"></span>
@@ -61,7 +47,7 @@ class Sidemenu extends React.Component {
 
 function mapStateToProps(store){
   return {
-    councilMemberStore: store.reducers.councilMember
+    appSettingsStore: store.reducers.appSettings
   }
 }
 

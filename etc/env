@@ -1,1 +1,2 @@
 export REACT_APP_EPIQUERY_CM=https://epi.glgresearch.com/epistream-cm/epiquery1/glglive/
+export REACT_APP_REDIRECT_URL=https://services.glgresearch.com/redirect/

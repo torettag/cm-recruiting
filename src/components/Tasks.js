@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import mustache from 'mustache'
 import moment from 'moment'
 import epi from '../services/epi'
+import redirect from '../services/redirect'
 import '../styles/Tasks.css';
 
 
@@ -11,13 +12,14 @@ class Tasks extends React.Component {
     super(props);
     this.state = { referrals: []};
     this.epi = new epi();
+    this.redirect = new redirect();
     this.pageLoad = this.pageLoad.bind(this);
   }
 
   pageLoad () {
     let referrals = this.props.referralsStore.referrals;
 
-    //filter to referrals you did not skip
+    //filter to refacerrals you did not skip
     referrals = referrals.filter( (referral) => { return !referral.isCouncilMemberReferralFollowUpSkip })
 
     //find the task to perform
@@ -47,6 +49,9 @@ class Tasks extends React.Component {
         return moment(a.referredCouncilMemberCreateDate) + moment(b.referredCouncilMemberCreateDate);
     })
 
+    //if focusMode and you have nothing left to do, go to the redirect to do the next thing
+    if (this.props.appSettingsStore.focusMode)// && !referrals.length)
+      this.redirect.go(this.props.appSettingsStore);
 
     this.setState({ referrals });
   }
@@ -133,15 +138,10 @@ class Tasks extends React.Component {
 function mapStateToProps(store){
   return {
     councilMemberStore: store.reducers.councilMember,
-    referralsStore: store.reducers.referrals
+    referralsStore: store.reducers.referrals,
+    appSettingsStore: store.reducers.appSettings
   }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     referralDispatch: () => dispatch(updateImageAction()),
-//   };
-// };
 
 export default connect(mapStateToProps)(Tasks)
 
