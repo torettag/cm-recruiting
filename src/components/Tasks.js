@@ -50,7 +50,7 @@ class Tasks extends React.Component {
     })
 
     //if focusMode and you have nothing left to do, go to the redirect to do the next thing
-    if (this.props.appSettingsStore.focusMode)// && !referrals.length)
+    if (this.props.appSettingsStore.focusMode && !referrals.length)
       this.redirect.go(this.props.appSettingsStore);
 
     this.setState({ referrals });
