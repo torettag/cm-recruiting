@@ -34,7 +34,7 @@ class Modal extends React.Component {
               <h2>Welcome to the GLG Referral Dashboard</h2>
             </div>
             <div className="modal-body">
-              <p>We've redirected you here because it looks like you've provided us with referrals in the past. This Dashboard is meant to help you follow up and earn a referral bonus with the recent candidates that you've referred to us.</p>
+              <p>It looks like you've provided us with referrals in the past. This Dashboard is meant to help you follow up and earn a referral bonus with the recent candidates that you've referred to us.</p>
             </div>
             <div className="modal-footer">
               <h3>To get started look at your task list to see who you should follow up with.</h3>
