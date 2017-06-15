@@ -75,7 +75,7 @@ store.dispatch({type:"SET_JWT_TOKEN",value: urlParams.get('jwt') || cookie.load(
 
 //Go get who is logged in and all shared info
 Promise.all(
-  [new epi().get('cm/getCouncilMember.mustache'), new epi().get('referral/getReferral.mustache') ]
+  [new epi().get('cm/getCouncilMember.mustache'), new epi().post('referral/getReferral.mustache', { createdAfter: moment().subtract(6, 'months')  }) ]
 )
 .then( (results) => {
   let cm = results[0][0];
