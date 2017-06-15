@@ -19,11 +19,13 @@ class Tasks extends React.Component {
   pageLoad () {
     let referrals = this.props.referralsStore.referrals;
 
-    //filter to refacerrals you did not skip
-    referrals = referrals.filter( (referral) => { return !referral.isCouncilMemberReferralFollowUpSkip })
+    //filter to referrals you did not skip
+    referrals = referrals.filter( (referral) => { return referral.councilMemberReferralFollowStatus !== 'Skipped' });
+    //filter to referrals, you have not acted on or you already followed up on in a week
+    referrals = referrals.filter( (referral) => { return !referral.councilMemberReferralFollowStatus || (referral.councilMemberReferralFollowStatus === 'Followed Up' && moment(referral.councilMemberReferralFollowLastUpdateDate) <= moment().subtract(1, 'weeks')) });
 
     //find the task to perform
-    referrals.forEach( (referral) => { 
+    referrals.forEach( (referral) => {
       //has not completed the application
       if (referral.referredCouncilMemberIsLead)
         referral.task = { priority: 1, reason: 'apply', referralTask: 'Has not completed the application', sponsorTask: 'Follow up'  };
@@ -42,7 +44,7 @@ class Tasks extends React.Component {
     referrals = referrals.filter( (referral) => { return referral.task })
 
     //sort priority and by newest referral
-    referrals = referrals.sort( (a, b) => {  
+    referrals = referrals.sort( (a, b) => {
       if (a.task.priority !== b.task.priority)
         return a.task.priority - b.task.priority;
       else
@@ -62,12 +64,30 @@ class Tasks extends React.Component {
 
   followUpSkip (referredCouncilMemberId) {
     let props = this.props;
-    this.epi.post('referral/insertCouncilMemberReferralFollowUpSkip.mustache')
+    this.epi.post('referral/upsertCouncilMemberReferralFollowUp.mustache', {referredCouncilMemberId, status: 'Skipped' })
     .then( () => {
       //find the referral
       let referral = props.referralsStore.referrals.find( (referral) => { return referral.referredCouncilMemberCouncilMemberId === referredCouncilMemberId })
       //mark skipped
       referral.isCouncilMemberReferralFollowUpSkip = true;
+      //send it up to reducer
+      props.dispatch({type:"setReferrals",value: props.referralsStore.referrals});
+
+      this.pageLoad();
+    })
+  }
+
+  followUp (referredCouncilMemberId) {
+    let props = this.props;
+    this.epi.post('referral/upsertCouncilMemberReferralFollowUp.mustache', { referredCouncilMemberId ,  status: 'Followed Up' })
+    .then( () => {
+      //find the referral      
+      let referral = props.referralsStore.referrals.find( (referral) => { return referral.referredCouncilMemberCouncilMemberId === referredCouncilMemberId })
+
+      //mark followed up
+      referral.councilMemberReferralFollowStatus = 'Followed Up'
+      referral.councilMemberReferralFollowLastUpdateDate = moment().format('MM/DD/YYYY hh/mm/aa');
+
       //send it up to reducer
       props.dispatch({type:"setReferrals",value: props.referralsStore.referrals});
 
@@ -118,7 +138,7 @@ class Tasks extends React.Component {
                         </div>
 
                         <div className='action-button'>
-                          <a href={ mailToLink }><span className="icon-redarrow_icon"></span></a>
+                          <a onClick={(e) => this.followUp(referral.referredCouncilMemberCouncilMemberId)} href={ mailToLink }><span className="icon-redarrow_icon"></span></a>
                         </div>
                       </div>
                     </div>
