@@ -11,6 +11,7 @@ import Referraltrack from '../components/Referraltrack';
 import Rewardtrack from '../components/Rewardtrack';
 import Tasks from '../components/Tasks';
 import Activitymon from '../components/Activitymon';
+import Modal from '../components/Modal';
 
 class Home extends React.Component {
   constructor(props) {
@@ -21,6 +22,8 @@ class Home extends React.Component {
 
   componentDidMount () {
     ga.pageview('/home');
+
+    console.log('IS THIS DEFINED?: ',this.props.focusMode)
   }
 
   render () {
@@ -40,6 +43,9 @@ class Home extends React.Component {
                   <div className='flex-row'>
                     <Referraltrack/>
                     <Rewardtrack/>
+                   { this.props.appSettingsStore.focusMode ?
+                    <Modal showModal={this.props.appSettingsStore.focusMode}/>
+                    : null }
                   </div>
                 </div>
               </div>
@@ -55,8 +61,9 @@ class Home extends React.Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(store){
   return {
+    appSettingsStore: store.reducers.appSettings
   }
 }
 
