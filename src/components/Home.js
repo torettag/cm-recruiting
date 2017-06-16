@@ -22,8 +22,6 @@ class Home extends React.Component {
 
   componentDidMount () {
     ga.pageview('/home');
-
-    console.log('IS THIS DEFINED?: ',this.props.focusMode)
   }
 
   render () {
@@ -46,6 +44,10 @@ class Home extends React.Component {
                    { this.props.appSettingsStore.focusMode ?
                     <Modal showModal={this.props.appSettingsStore.focusMode}/>
                     : null }
+                  </div>
+
+                   <div className='flex-row'>
+                    <Activitymon/>
                   </div>
                 </div>
               </div>

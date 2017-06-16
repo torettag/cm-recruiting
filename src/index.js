@@ -75,15 +75,20 @@ store.dispatch({type:"SET_JWT_TOKEN",value: urlParams.get('jwt') || cookie.load(
 
 //Go get who is logged in and all shared info
 Promise.all(
-  [new epi().get('cm/getCouncilMember.mustache'), new epi().post('referral/getReferral.mustache', { createdAfter: moment().subtract(6, 'months')  }) ]
+  [
+    new epi().get('cm/getCouncilMember.mustache'), 
+    new epi().post('referral/getReferral.mustache', { createdAfter: moment().subtract(6, 'months')  }), 
+    new epi().post('referral/getActivity.mustache', { createdAfter: moment().subtract(6, 'months')  }) 
+  ]
 )
 .then( (results) => {
   let cm = results[0][0];
   let referrals = results[1];
+  let activity = results[2];
   if (cm) {
     store.dispatch({type:"setCouncilMember",value: cm});
-
     store.dispatch({type:"setReferrals",value: referrals});
+    store.dispatch({type:"setActivity",value: activity});
 
     //once info received, render the app
     ReactDOM.render(

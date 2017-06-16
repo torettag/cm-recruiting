@@ -6,6 +6,10 @@ function referrals(state = {}, action) {
       return objectAssign({}, state, {
         referrals: action.value
       })
+    case 'setActivity':
+      return objectAssign({}, state, {
+        activity: action.value
+      })
     default:
       return state
   }
