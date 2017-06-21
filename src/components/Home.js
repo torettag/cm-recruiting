@@ -46,9 +46,10 @@ class Home extends React.Component {
                     : null }
                   </div>
 
-                   <div className='flex-row'>
+                   <div className='activityholder'>
                     <Activitymon/>
-                  </div>
+                   </div>
+
                 </div>
               </div>
             </div>

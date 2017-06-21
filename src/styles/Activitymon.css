@@ -11,6 +11,11 @@
   font-weight: bold;
 }
 
+.activityitembox {
+  overflow: scroll;
+  height: 300px;
+}
+
 .activitytext {
   margin-top: .25em;
 }

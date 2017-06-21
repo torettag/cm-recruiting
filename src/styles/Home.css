@@ -16,6 +16,10 @@
    flex-direction: column;
 }
 
+.activityholder {
+  margin-right:1.4em;
+}
+
 .flex-child {
   height: 300px;
   width: 300px;

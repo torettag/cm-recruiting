@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import epi from '../services/epi'
 import '../styles/Activitymon.css';
+import moment from 'moment';
+
 
 
 class Activitymon extends React.Component {
@@ -13,46 +15,44 @@ class Activitymon extends React.Component {
 
   componentDidMount () {
     let activity = this.props.referralsStore.activity;
+
+    activity = activity.sort((a,b) => {
+      return new Date(b.activityDate).getTime() - new Date(a.activityDate).getTime()
+    })
+
     this.setState({ activity });
+    console.log("ACTIVITY?: ", activity);
   }
+
 
   render () {
     return (
-      <section>
-      </section>
+      <div>
+        { this.state.activity.length ?
+          <div id='activitymon' className='view-container'>
+            <section className=''>
+              <div className='flex-col'>
+                <div className='subhead'>Activity Monitor</div>
+                  <div className='activityitembox'>
+                  {
+                    this.state.activity.map( (event,i) => {
+                      return (
+                        <section key={i} id='activitytextblock'>
+                          <div className='flex-row'>
+                            <div className='circle'></div><span className='activitytext'>Your referral {event.firstName} {event.lastName} has a status update: {event.activity}<span className='activitytime'>{moment(event.activityDate).fromNow()}</span></span>
+                          </div>
+                        </section>
+                      );
+                    })
+                  }
+                  </div>
+              </div>
+            </section>
+          </div>
+        : null }
+      </div>
     )
   }
-
-  // render () {
-  //   return (
-  //     <section>
-  //       { this.state.activity.length ?
-  //         <div id='activitymon' className='view-container'>
-  //           <section className=''>
-  //             <div className='flex-col'>
-  //               <div className='subhead'>Activity Monitor</div>
-  //               <section id='activitytextblock'>
-  //                 <div className='flex-row'>
-  //                   <div className='circle'></div><span className='activitytext'>This is a test activity here<span className='activitytime'> 60 seconds ago</span></span>
-  //                 </div>
-  //                 <div className='flex-row'>
-  //                   <div className='circle'></div><span className='activitytext'>This is a test activity here<span className='activitytime'> 24 hours ago</span></span>
-  //                 </div>
-  //                 <div className='flex-row'>
-  //                   <div className='circle'></div><span className='activitytext'>This is a test activity here<span className='activitytime'> 2 day ago</span></span>
-  //                 </div>
-  //                 <div className='flex-row'>
-  //                   <div className='circle'></div><span className='activitytext'>This is a test activity here<span className='activitytime'> 4 days ago</span></span>
-  //                 </div>
-  //               </section>
-
-  //             </div>
-  //           </section>
-  //         </div>
-  //       : null }
-  //     </section>
-  //   )
-  // }
 }
 
 function mapStateToProps(store){
