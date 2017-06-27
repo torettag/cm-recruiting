@@ -58,7 +58,7 @@ class Activitymon extends React.Component {
                       return (
                         <section key={i} id='activitytextblock'>
                           <div className='flex-row'>
-                            <span className={event.classNamed}></span><span className='activitytext'>Your referral {event.firstName} {event.lastName} has a status update: {event.activity}<span className='activitytime'>{moment(event.activityDate).fromNow()}</span></span>
+                            <span className={event.classNamed}></span><span className='activitytext'>Your referral {event.firstName} {event.lastName} has a status update: <span className="bolded">{event.activity}</span><span className='activitytime'>{moment(event.activityDate).fromNow()}</span></span>
                           </div>
                         </section>
                       );

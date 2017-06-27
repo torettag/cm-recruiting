@@ -10,6 +10,10 @@
   font-size: .75em;
 }
 
+.bolded {
+  font-weight: bold;
+}
+
 .activityitembox {
   overflow: scroll;
   height: 300px;
