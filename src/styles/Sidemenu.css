@@ -56,7 +56,6 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    padding-left: .5em;
     width: 12em;
 } 
 
@@ -70,6 +69,10 @@ li a {
     font-size: .75em;
     text-align:left;
     /*background-color: #dddddd;*/
+}
+
+li a.active {
+  background: #f24c45;
 }
 
 @font-face {
