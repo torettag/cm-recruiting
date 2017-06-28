@@ -68,10 +68,23 @@ li a {
     text-decoration: none;
     font-size: .75em;
     text-align:left;
+    cursor: pointer;
     /*background-color: #dddddd;*/
 }
 
 li a.active {
+  background: #f24c45;
+}
+
+.jobsActive {
+  background: #f24c45;
+}
+
+.homeActive {
+  background: #f24c45;
+}
+
+.recruitsActive {
   background: #f24c45;
 }
 

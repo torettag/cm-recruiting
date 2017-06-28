@@ -20,6 +20,9 @@ import moment from 'moment';
 import epi from './services/epi';
 
 import Home from './components/Home';
+import Jobs from './components/Jobs';
+import Recruits from './components/Recruits';
+
 
 import councilMemberReducer from './reducers/councilMember';
 import referralsReducer from './reducers/referrals';
@@ -96,6 +99,8 @@ Promise.all(
         <ConnectedRouter history={history}>
          <App>
             <Route path="/" component={Home}/>
+            <Route path="jobs" component={Jobs}/>
+            <Route path="recruits" component={Recruits}/>
           </App>
         </ConnectedRouter>
       </Provider>,

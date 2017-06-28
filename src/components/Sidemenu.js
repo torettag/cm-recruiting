@@ -1,15 +1,54 @@
 import React from 'react'
-// import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import epi from '../services/epi'
 import '../styles/Sidemenu.css';
+import classnames from 'classnames';
 
 
 class Sidemenu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      homeActive : true,
+      jobsActive : false
+    };
     this.epi = new epi();
+  }
+
+  
+  locationChange(location) {
+
+    if (location ==='#/') {
+    
+      this.setState( { homeActive : true });
+      this.setState( { jobsActive : false });
+      this.setState( { recruitsActive : false });
+      console.log("Location is DASH");
+     
+     
+    }
+    if (location ==='#/jobs') {
+      
+      this.setState( { jobsActive : true });
+      this.setState( { homeActive : false });
+      this.setState( { recruitsActive : false });
+      console.log("Location is JOBS");
+
+    }
+    if (location ==='#/recruits') {
+      
+      this.setState( { recruitsActive : true});
+      this.setState( { jobsActive : false});
+      this.setState( { homeActive : false });
+      
+      console.log("Location is RECRUITS");
+
+    }
+
+
+    
+    window.location = location;
+    console.log('READING LOCATION AS:',location)
   }
 
 
@@ -22,6 +61,19 @@ class Sidemenu extends React.Component {
   }
 
   render () {
+
+    var home = classnames({
+      'homeActive': this.state.homeActive ? true : false
+    }); 
+
+    var jobs = classnames({
+      'jobsActive': this.state.jobsActive ? true : false
+    });
+
+    var recruits = classnames({
+      'recruitsActive': this.state.recruitsActive ? true : false
+    });     
+
     return (
       
       <div id='sidemenu' className='view-container'>
@@ -32,9 +84,9 @@ class Sidemenu extends React.Component {
             <span className="icon-addcontact_icon"><span className="path1"></span><span className="path2"></span><span className="path3"></span></span>
             <span className="icon-joblist_icon"></span>
             <ul>
-              <li><a href="#home">DASHBOARD</a></li>
-              <li><a href="#news">ADD RECRUITS</a></li>
-              <li><a href="#contact">VIEW JOB LIST</a></li>
+              <li className={home}><a onClick={(e) => this.locationChange('#/')}>DASHBOARD</a></li>
+              <li className={recruits}><a onClick={(e) => this.locationChange('#/recruits')}>ADD RECRUITS</a></li>
+              <li className={jobs}><a onClick={(e) => this.locationChange('#/jobs')}>VIEW JOB LIST</a></li>
             </ul>
           </div>
         </section>
