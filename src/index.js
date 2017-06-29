@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Switch, Route } from 'react-router-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './styles/index.css';
 
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { Route } from 'react-router'
+
 
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 
@@ -97,10 +98,12 @@ Promise.all(
     ReactDOM.render(
       <Provider store={store}>
         <ConnectedRouter history={history}>
-         <App>
-            <Route path="/" component={Home}/>
-            <Route path="jobs" component={Jobs}/>
-            <Route path="recruits" component={Recruits}/>
+          <App>
+            <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route exact path="/jobs" component={Jobs}/>
+              <Route exact path="/recruits" component={Recruits}/>
+            </Switch>
           </App>
         </ConnectedRouter>
       </Provider>,

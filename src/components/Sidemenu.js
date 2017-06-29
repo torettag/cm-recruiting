@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import epi from '../services/epi'
 import '../styles/Sidemenu.css';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
 
 class Sidemenu extends React.Component {
@@ -84,9 +85,9 @@ class Sidemenu extends React.Component {
             <span className="icon-addcontact_icon"><span className="path1"></span><span className="path2"></span><span className="path3"></span></span>
             <span className="icon-joblist_icon"></span>
             <ul>
-              <li className={home}><a onClick={(e) => this.locationChange('#/')}>DASHBOARD</a></li>
-              <li className={recruits}><a onClick={(e) => this.locationChange('#/recruits')}>ADD RECRUITS</a></li>
-              <li className={jobs}><a onClick={(e) => this.locationChange('#/jobs')}>VIEW JOB LIST</a></li>
+              <Link to='/'><li className={home}><a onClick={(e) => this.locationChange('#/')}>DASHBOARD</a></li></Link>
+              <Link to='/recruits'><li className={recruits}><a onClick={(e) => this.locationChange('#/recruits')}>ADD RECRUITS</a></li></Link>
+              <Link to='/jobs'><li className={jobs}><a onClick={(e) => this.locationChange('#/jobs')}>VIEW JOB LIST</a></li></Link>
             </ul>
           </div>
         </section>

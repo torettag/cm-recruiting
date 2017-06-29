@@ -30,7 +30,7 @@ class Recruits extends React.Component {
             <div className='flex-col'>
               <Welcomestatus/>
               <div className='flex-row'>
-                This is the jobs page.
+                This is the recruits page.
               </div>
             </div>
           </div>
